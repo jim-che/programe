@@ -79,7 +79,8 @@ export default {
   },
   methods: {
     initForm() {
-      let mode = "this.$route?.params?.mode;";
+      // let mode = "this.$route?.params?.mode;";
+      let mode = this.$route.params.mode;
       if (mode === "edit") {
         this.mode = true;
         this.modeText = "修改文件信息";
@@ -90,7 +91,8 @@ export default {
         this.modeText = "查看文件信息";
       }
 
-      ("let params = this.$route?.params;");
+      // ("let params = this.$route?.params;");
+      let params = this.$route.params;
       if (params.data) {
         let data = JSON.parse(params.data);
         this.form.Uuid = data.Uuid;
@@ -145,8 +147,23 @@ export default {
       });
     },
     add(params) {
-      api
-        .add(params)
+      // api
+      //   .add(params)
+      //   .then(res => {
+      //     this.loading = false;
+      //     if (res.status === 200) {
+      //       this.$message.success(res.msg);
+      //       this.$router.push("/file/list");
+      //     } else {
+      //       this.$message.error(res.msg);
+      //     }
+      //   })
+      //   .catch(err => {
+      //     this.$message.error(err.msg);
+      //     this.loading = false;
+      //   });
+      const _this = this;
+      this.post("/api/file/add", params)
         .then(res => {
           this.loading = false;
           if (res.status === 200) {

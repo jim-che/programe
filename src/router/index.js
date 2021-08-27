@@ -4,7 +4,7 @@ import Login from "../views/Login/index.vue";
 import User from "../views/sys/User/index.vue";
 import UserAdd from "../views/sys/User/add.vue";
 import File from "../views/Files/index.vue";
-import FileUpLoad from "../views/Files/upload.vue";
+import FileUpload from "../views/Files/upload.vue";
 Vue.use(Router);
 //获取原型对象上的push函数
 const originalPush = Router.prototype.push;
@@ -33,16 +33,14 @@ export default new Router({
       ]
     },
     {
-      path: "/file",
+      path: "/file/list",
       name: "file",
-      component: File,
-      children: [
-        {
-          path: "/upload",
-          name: "upload",
-          component: FileUpLoad
-        }
-      ]
+      component: File
+    },
+    {
+      path: "/file/upload",
+      name: "fileUpload",
+      component: FileUpload
     }
   ]
 });

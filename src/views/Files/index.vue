@@ -104,8 +104,10 @@ export default {
         .post("/api/file/list", { CurrentPage, PageSize })
         .then(res => {
           this.loading = false;
-          this.tableData = res.data.list;
-          this.TotalPageSize = res.data.total;
+          if (res.status === 200) {
+            this.tableData = res.data.list;
+            this.TotalPageSize = res.data.total;
+          }
         })
         .catch(err => {
           this.loading = false;
